@@ -49,8 +49,11 @@ resource "local_file" "ipaddresses" {
    [servers]
    %{ for ip in local.ips }${ip}
    %{ endfor }
+   [all:vars]
+   ansible_user=reneadmin
+   ansible_ssh_private_key_file=~/.ssh/id_ed25519
    EOT
-
+   
    filename = "${path.module}/inventory.ini"
 }
 #  Outputs are a great way to output information about your apply.
