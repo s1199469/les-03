@@ -16,3 +16,6 @@
 test
 test2
 test3
+
+Opdracht 1:
+wegschrijven IP adres naar inventory file is gelukt
