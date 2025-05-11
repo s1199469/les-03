@@ -19,7 +19,7 @@ test3
 
 ## Opdracht 1:
 wegschrijven IP adres naar inventory file is gelukt
-## opdracht 2:
+### ssh verbinding voor Ansible
 let op de notatie in de inventory:
 [all:vars] <-deze wordt snel vergeten
 ansible_user=<user>
