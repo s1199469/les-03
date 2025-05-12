@@ -53,6 +53,7 @@ taken zijn na fix succesvol uitgevoerd.
 
 # toevoegen regels aan /etchosts
 **playbook: addhostsentry.yml**
+
 reneadmin@lab3server:~$ reneadmin@lab3server:~$ cat /etc/hosts
 127.0.0.1 localhost
 
@@ -62,8 +63,7 @@ fe00::0 ip6-localnet
 ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
-ff02::3 ip6-allhosts
-# (mark) ANSIBLE MANAGED BLOCK esxi
+ff02::3 ip6-allhosts (mark) ANSIBLE MANAGED BLOCK esxi
 192.168.1.11 esxi
-# (mark) ANSIBLE MANAGED BLOCK esxi
+(mark) ANSIBLE MANAGED BLOCK esxi
 reneadmin@lab3server:~$
