@@ -51,12 +51,14 @@ playbook maken lukt maar geeft bij uitvoering foutmelding: fatal: [192.168.1.55]
 oorzaak: become: yes ontbrak in playbook. 
 taken zijn na fix succesvol uitgevoerd.
 
-# toevoegen regels aan /etchosts
+## toevoegen regels aan /etchosts
 **playbook: addhostsentry.yml**
-playboek is succesvol uitgevoerd. Resultaat in hosts:
+playbook is succesvol uitgevoerd. Resultaat in hosts:
 
 >*# (mark) ANSIBLE MANAGED BLOCK esxi
 >192.168.1.11 esxi
 >*# (mark) ANSIBLE MANAGED BLOCK esxi
 
-(
+## kopieer bestand naar remote host
+**playbook: copyfile.yml**
+playbook is succesvol uitgevoerd. 

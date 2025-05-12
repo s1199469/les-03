@@ -1,0 +1,14 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html#examples
+- name: copy file to remote host
+  hosts: servers
+  become: yes
+ 
+  tasks:
+  - name: copy file
+    ansible.builtin.copy:
+      src: /etc/COPYWITHANSIBLE
+      dest: /etc/COPYWITHANSIBLE
+      owner: reneadmin
+      group: reneadmin
+      mode: '0644' 
