@@ -1,0 +1,13 @@
+- name: add entry to hosts
+  hosts: servers
+  become: yes
+
+  tasks:
+  - name: add host entries
+    ansible.builtin.blockinfile:
+      path: /etc/hosts
+      block: |
+        {{ item.ip }} {{ item.name }}
+      marker: "# (mark) ANSIBLE MANAGED BLOCK {{ item.name }}"
+    loop:
+    - { name: esxi, ip: 192.168.1.11 }
