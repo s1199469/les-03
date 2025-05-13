@@ -83,3 +83,14 @@ bron: https://serverfault.com/questions/728662/ansible-manipulate-file-with-a-da
         dest: /tmp/backup-{{ date }}.zip
         format: zip
 
+# cronjob voor dagelijkse backup
+cron module voor ansible. De playbook wordt nu getarget naar localhost omdat deze de playbook voor de backup moet uitvoeren
+**playbook: schedule_remote_backup.yml**
+resultaat:
+student@devhost:~/terraform/week-3/LAB-3$ sudo crontab -l
+# Ansible: daily backup of remote hostfolders
+**playbook: schedule_remote_backupjob.yml**
+week-3/LAB-3/backup_folder.yml
+playbook is succesvol uitgevoerd, er is een cron job toegevoegd op de beheermachine:
+"* 22 * * * ansible-playbook -i ~/terraform/week-3/LAB-3/inventory.ini ~/terraform/"
+
