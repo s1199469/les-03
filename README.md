@@ -51,14 +51,35 @@ playbook maken lukt maar geeft bij uitvoering foutmelding: fatal: [192.168.1.55]
 oorzaak: become: yes ontbrak in playbook. 
 taken zijn na fix succesvol uitgevoerd.
 
-## toevoegen regels aan /etchosts
+# toevoegen regels aan /etchosts
 **playbook: addhostsentry.yml**
-playbook is succesvol uitgevoerd. Resultaat in hosts:
+playboek is succesvol uitgevoerd.
+nadeel: bij de volgende keer uitvoeren wordt dezelfde regel toegevoegd
+
+ Resultaat in hosts:
 
 >*# (mark) ANSIBLE MANAGED BLOCK esxi
 >192.168.1.11 esxi
 >*# (mark) ANSIBLE MANAGED BLOCK esxi
 
-## kopieer bestand naar remote host
-**playbook: copyfile.yml**
-playbook is succesvol uitgevoerd. 
+ # toevoegen user met de naam "test"
+ **playbook: adduser.yml**
+ playbook is succesvol uitgevoerd
+
+ # backup folders naar /tmp/
+ **playbook: backup_folder.yml**
+ playbook is succesvol uitegvoerd. Zipfile staat op /tmp
+ om de filenaam de datum en tijd mee te geven heb ik de volgende oplossing toegepast:
+bron: https://serverfault.com/questions/728662/ansible-manipulate-file-with-a-date-format
+
+ vars:
+    date: "{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
+ tasks:
+    - name: backup folder
+      archive:
+        path:
+          - /etc/
+          - /var/www/
+        dest: /tmp/backup-{{ date }}.zip
+        format: zip
+
