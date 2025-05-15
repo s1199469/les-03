@@ -8,8 +8,8 @@ users:
     sudo: ALL=(ALL) NOPASSWD:ALL
     # een list in tfvars file is nog niet gelukt
 
-    ssh-authorized-keys:
-      - ${KEY}
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHLj0QW8VQfxx9mUMdZevTxPif3fw0VavPP1noc4kgBc student@devhost
     shell: /bin/bash
 runcmd:
   - hostnamectl set-hostname ${HOSTNAME}

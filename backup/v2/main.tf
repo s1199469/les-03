@@ -49,7 +49,6 @@ resource "esxi_guest" "Server1" {
   memsize            = var.vm1_memsize
   numvcpus           = var.vm1_numvcpus
   count              = var.vm1_count
-  
 
 ovf_source = "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.ova"
 
