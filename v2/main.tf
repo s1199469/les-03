@@ -109,8 +109,8 @@ ovf_source = "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.0
 # wegschrijven IP adressen in file en aanmaken inventory file
 locals {
   ips = [esxi_guest.Server1[0].ip_address,esxi_guest.Server2[0].ip_address,esxi_guest.Server3[0].ip_address]
-  db_ips=[esxi_guest.Server1[0].ip_address,esxi_guest.Server2[0].ip_address]
-  web_ips=[esxi_guest.Server3[0].ip_address]
+  web_ips=[esxi_guest.Server1[0].ip_address,esxi_guest.Server2[0].ip_address]
+  db_ips=[esxi_guest.Server3[0].ip_address]
 }
 resource "local_file" "ipaddresses" {
    content = <<-EOT
@@ -123,7 +123,7 @@ resource "local_file" "ipaddresses" {
 
    [all:vars]
    ansible_user=ansible
-   ansible_ssh_private_key_file=~/.ssh/id_ed25519
+   ansible_ssh_private_key_file=~/.ssh/ansikey
    EOT
 
    filename = "${path.module}/inventory.ini"
