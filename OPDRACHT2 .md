@@ -1,51 +1,20 @@
 # les-03
 ## LAB week 3 opdracht 4
 ## commando's voor nieuwe branch
-* git checkout -b productie
-* git checkout productie
+* git checkout -b test
+* git checkout test
 * maak wijzigingen
 * git add .
 * git commit -m "nieuwe branch"
 * upload branch naar github (niet nodig voor eenmalige aanpassing die gemerged gaat worden)
-* git push --set-upstream origin productie
+* git push --set-upstream origin test
 # samenvoegen
 * git checkout main
 * git merge test
 * git push
 
 
-## Opdracht 4:
 
-### drie VM's met automatisch gegenereerde inventory
-2x databaseserver (s1199469web01 en s1199469web02)
-label/groep [databaseservers]
-1x webserver
-label/groep [webservers]
-
-
-let op de notatie in de inventory:
-[all:vars] <-deze wordt snel vergeten
-ansible_user=<user>
-ansible_ssh_private_key_file=~/.ssh/<keyfile>
-alleen ip adres of serev1 ansible_host=<ip adres> kunnen allebei
-in main.tf wordt de inventory file als volgt aangemaakt:
-
-resource "local_file" "ipaddresses" {
-   content = <<-EOT
-   [servers]
-   %{ for ip in local.ips }${ip}
-   %{ endfor }
-   [all:vars]
-   ansible_user=reneadmin
-   ansible_ssh_private_key_file=~/.ssh/id_ed25519
-   EOT
-   
-   filename = "${path.module}/inventory.ini"
-}
-test: ansible -i inventory.ini -m ping all
-
-to do: nieuwe ssh keypair en user: ansible
-test is nu gedaan met reneadmin uit de vorige opdracht
 
 # Opdracht 2
 ** playbook file: updatepackages**

@@ -1,0 +1,23 @@
+- name: Backup all VMs on Proxmox Hypervisor
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Get list of all VMs
+      community.general.proxmox_kvm:
+        api_user: test
+        api_password: test
+        api_host: node1
+        vmid: "{{ item }}"
+        state: current
+      register: vms
+      loop: "{{ query('community.general.proxmox_kvm', 'api_user=test api_password=test api_host=node1') }}"
+    - name: Backup each VM
+      community.general.proxmox_kvm:
+        api_user: test
+        api_password: test
+        api_host: node1
+        vmid: "{{ item.vmid }}"
+        state: backup
+        storage: backup_vm
+      loop: "{{ vms.results }}"
+      when: item.vmid is defined

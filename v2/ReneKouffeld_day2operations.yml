@@ -16,6 +16,7 @@
     - name: update apt-get repo and cache
       # updaten van apt-get repo en cache op alle servers
 
+      # dit is nodig voor het installeren van de software
       apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 - name: install mariadb
   hosts: databaseservers
@@ -43,7 +44,7 @@
         name: nginx
         state: started
         enabled: yes
-        # bijzonderheden
 
+# bijzonderheden
 # bij de nginx installatie moet state "latest" worden opgegeven. State "present" werkt niet.
 # het package van mariaDB heet mariadb in kleine letters
