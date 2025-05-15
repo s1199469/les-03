@@ -1,0 +1,10 @@
+# test aanmaken ssh keypair
+# https://docs.ansible.com/ansible/2.9/modules/archive_module.html#examples
+- name: ssh key
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: create_key
+      community.crypto.openssh_keypair:
+        path: /home/student/.ssh/ansible
+        type: ed25519

@@ -1,0 +1,15 @@
+# inplannen backup playbook met cron
+# https://docs.ansible.com/ansible/2.9/modules/archive_module.html#examples
+- name: schedule backup
+  hosts: localhost
+  become: yes
+  vars:
+    date: "{{ lookup('pipe', 'date +%Y%m%d-%H%M') }}"
+  tasks:
+    - name: daily backup
+      cron:
+        name: "daily backup of remote hostfolders"
+        weekday: "*"
+        minute: "35"
+        hour: "19"
+        job: "ansible-playbook -i ~/terraform/week-3/LAB-3/inventory.ini ~/terraform/week-3/LAB-3/backup_folder.yml"
