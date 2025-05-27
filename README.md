@@ -1,5 +1,13 @@
-# les-03
-## LAB week 3 opdracht 1
+# WEEK 3 - Odracht 1
+
+----
+
+# issues
+
+----
+
+----
+
 ## commando's voor nieuwe branch
 * git checkout -b test
 * git checkout test
