@@ -19,7 +19,6 @@ data "template_file" "Server1" {
   }
 }
 
-
 data "template_file" "Server2" {
   template = file(var.vm2_userconfigfile)
   vars = {
@@ -28,16 +27,6 @@ data "template_file" "Server2" {
     HELLO = "Hello world!"
     KEY=var.vm_publickey
    
-  }
-}
-
-data "template_file" "Server3" {
-  template = file(var.vm3_userconfigfile)
-  vars = {
-    HOSTNAME = var.vm3_hostname
-    USER = var.vm3_user
-    HELLO = "Hello world!"
-    KEY=var.vm_publickey
   }
 }
 
@@ -86,31 +75,11 @@ ovf_source = "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.0
   }
 }
 
-# VM 3
-resource "esxi_guest" "Server3" {
-  guest_name         = var.vm3_hostname
-  disk_store         = var.disk_store
-  memsize            = var.vm3_memsize
-  numvcpus           = var.vm3_numvcpus
-  count              = var.vm3_count
-
-ovf_source = "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.ova"
-
-  network_interfaces {
-    virtual_network = var.virtual_network
-  }
-    
-  guestinfo = {
-    "userdata.encoding" = "gzip+base64"
-    "userdata"          = base64gzip(data.template_file.Server3.rendered)
-  }
-}
-
 # wegschrijven IP adressen in file en aanmaken inventory file
 locals {
   ips = [esxi_guest.Server1[0].ip_address,esxi_guest.Server2[0].ip_address,esxi_guest.Server3[0].ip_address]
-  web_ips=[esxi_guest.Server1[0].ip_address,esxi_guest.Server2[0].ip_address]
-  db_ips=[esxi_guest.Server3[0].ip_address]
+  web_ips=[esxi_guest.Server1[0].ipaddress]
+  db_ips=[esxi_guest.Server2[0].ip_address]
 }
 resource "local_file" "ipaddresses" {
    content = <<-EOT
@@ -138,7 +107,4 @@ output "ip1" {
 }
 output "ip2" {
   value = esxi_guest.Server2[0].ip_address
-}
-output "ip3" {
-  value = esxi_guest.Server3[0].ip_address
 }
