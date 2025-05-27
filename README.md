@@ -1,4 +1,11 @@
-# WEEK 3 - Odracht 1
+# WEEK 3 - Opdracht 1
+De naam van de repo wijkt af van de overige weken. In de opdracht staat dat de naam "les-03" moet worden gebruikt
+
+Per opdracht is een aparte README gemaakt in branch: __productie__:
+
+- OPDRACHT1.MD
+- OPDRACHT2.MD
+- OPDRACHT3.MD
 
 ----
 
@@ -21,6 +28,3 @@
 * git merge test
 * git push
 
-test
-test2
-test3
