@@ -1,5 +1,7 @@
 # les-03
+----
 ## LAB week 3 opdracht 1
+----
 ## commando's voor nieuwe branch
 * git checkout -b test
 * git checkout test
@@ -13,10 +15,7 @@
 * git merge test
 * git push
 
-test
-test2
-test3
-
+----
 ## Opdracht 1:
 wegschrijven IP adres naar inventory file is gelukt
 ### ssh verbinding voor Ansible
@@ -44,6 +43,7 @@ test: ansible -i inventory.ini -m ping all
 to do: nieuwe ssh keypair en user: ansible
 test is nu gedaan met reneadmin uit de vorige opdracht
 
+----
 # Opdracht 2
 ** playbook file: updatepackages**
 playbook maken lukt maar geeft bij uitvoering foutmelding: fatal: [192.168.1.55]: FAILED! => {"changed": false, "msg": "Failed to lock apt for exclusive operation: Failed to lock directory /var/lib/apt/lists/: E:Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)"}
